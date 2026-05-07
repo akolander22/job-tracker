@@ -1,6 +1,7 @@
 // All fetch calls go through here. One pattern, easy to trace.
 
-const BASE = "http://localhost:3001";
+const BASE = import.meta.env.VITE_API_URL ?? "http://localhost:8001";
+
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
