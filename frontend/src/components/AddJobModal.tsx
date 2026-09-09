@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { api } from "../api/client";
-import { Stage } from "../types";
+import type { Stage } from "../types";
 
 interface Props {
   onClose: () => void;

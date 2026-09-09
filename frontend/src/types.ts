@@ -1,6 +1,7 @@
 // All shared types live here. If you add a DB column, add it here too.
 
 export const STAGES = [
+  "Saved",
   "Applied",
   "Recruiter Screen",
   "Technical Interview",
