@@ -6,9 +6,10 @@ services:
     volumes:
       - /mnt/user/appdata/job-tracker/data:/data   # SQLite persists here
     ports:
-      - "8001:8001"                                 # only needed if not behind proxy
+      - "8001:8001"   # for job-hunt's save_job.py (JOB_TRACKER_URL=http://SERVER:8001)
     environment:
       - DB_PATH=/data/jobs.db
+      - TZ=America/Chicago
 
   frontend:
     image: ghcr.io/akolander22/job-tracker-frontend:latest

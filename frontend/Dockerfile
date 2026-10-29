@@ -6,7 +6,8 @@ RUN npm ci
 COPY . .
 
 # Vite needs to know the backend URL at build time
-ARG VITE_API_URL=http://localhost:8001
+# /api is proxied to the backend by nginx.conf
+ARG VITE_API_URL=/api
 ENV VITE_API_URL=$VITE_API_URL
 
 RUN npm run build

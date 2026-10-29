@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { getAllJobs, getJobById, createJob, updateJob, appendNote, deleteJob } = require("./db");
+const { getAllJobs, getJobById, getJobByUrl, createJob, updateJob, appendNote, deleteJob } = require("./db");
 
 const app = express();
 app.use(cors());
@@ -19,7 +19,16 @@ app.get("/jobs/:id", (req, res) => {
 });
 
 // POST /jobs — create from manual entry or scraper
+// A job whose URL is already on the board isn't added twice: you get the
+// existing card back with 200 instead of 201.
 app.post("/jobs", (req, res) => {
+  if (!req.body.title || !req.body.company) {
+    return res.status(400).json({ error: "title and company required" });
+  }
+  if (req.body.url) {
+    const existing = getJobByUrl(req.body.url);
+    if (existing) return res.status(200).json(existing);
+  }
   const job = createJob(req.body);
   res.status(201).json(job);
 });

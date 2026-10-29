@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { api } from "../api/client";
-import type { Stage } from "../types";
+import type { Job, Stage } from "../types";
 
 interface Props {
   onClose: () => void;
@@ -10,7 +10,7 @@ interface Props {
 export default function AddJobModal({ onClose, onCreated }: Props) {
   const [form, setForm] = useState({
     title: "", company: "", url: "", location: "",
-    remote: "unknown", stage: "Applied" as Stage,
+    remote: "unknown" as Job["remote"], stage: "Applied" as Stage,
     contact_name: "", contact_email: "",
     salary_min: "", salary_max: "",
   });
