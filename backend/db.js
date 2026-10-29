@@ -37,6 +37,10 @@ function getAllJobs() {
   return db.prepare(`SELECT * FROM jobs ORDER BY last_updated DESC`).all();
 }
 
+function getJobByUrl(url) {
+  return db.prepare(`SELECT * FROM jobs WHERE url = ? ORDER BY id LIMIT 1`).get(url);
+}
+
 function getJobById(id) {
   return db.prepare(`SELECT * FROM jobs WHERE id = ?`).get(id);
 }
@@ -87,4 +91,4 @@ function deleteJob(id) {
   return db.prepare(`DELETE FROM jobs WHERE id = ?`).run(id).changes > 0;
 }
 
-module.exports = { getAllJobs, getJobById, createJob, updateJob, appendNote, deleteJob };
+module.exports = { getAllJobs, getJobById, getJobByUrl, createJob, updateJob, appendNote, deleteJob };

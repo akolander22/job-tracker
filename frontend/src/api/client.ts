@@ -1,4 +1,5 @@
 // All fetch calls go through here. One pattern, easy to trace.
+import type { Job } from "../types";
 
 const BASE = import.meta.env.VITE_API_URL ?? "http://localhost:8001";
 
