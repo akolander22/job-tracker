@@ -1,0 +1,19 @@
+
+services:
+  backend:
+    image: ghcr.io/akolander22/job-tracker-backend:latest
+    restart: unless-stopped
+    volumes:
+      - /mnt/user/appdata/job-tracker/data:/data   # SQLite persists here
+    ports:
+      - "8001:8001"                                 # only needed if not behind proxy
+    environment:
+      - DB_PATH=/data/jobs.db
+
+  frontend:
+    image: ghcr.io/akolander22/job-tracker-frontend:latest
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend

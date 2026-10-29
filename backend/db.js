@@ -5,7 +5,7 @@
 const Database = require("better-sqlite3");
 const path = require("path");
 
-const DB_PATH = path.join(__dirname, "jobs.db");
+const DB_PATH = process.env.DB_PATH ?? path.join(__dirname, "jobs.db");
 const db = new Database(DB_PATH);
 
 // WAL mode lets reads happen while a write is in progress.

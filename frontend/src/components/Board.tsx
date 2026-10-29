@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/client";
-import { Job, STAGES, Stage } from "../types";
+import { STAGES } from "../types";
+import type { Job, Stage } from "../types";
 import JobCard from "./JobCard";
 import AddJobModal from "./AddJobModal";
 

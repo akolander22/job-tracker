@@ -1,4 +1,5 @@
-import { Job, Stage, STAGES } from "../types";
+import { STAGES } from "../types";
+import type { Job, Stage } from "../types";
 import { getStaleness, STALENESS_COLORS } from "../utils/staleness";
 import { api } from "../api/client";
 
